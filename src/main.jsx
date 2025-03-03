@@ -6,23 +6,21 @@ import Layout from "./Components/Layout.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Components/Pages/Home.jsx";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
-    children: [
-      { path: "/",
-       element: <Home />
-       }
-      
-      
-      ],
+    children: [{ path: "/", element: <Home /> }],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Toaster position="top-center"/>
+     
+      <RouterProvider router={router} />
+    
   </StrictMode>
 );
