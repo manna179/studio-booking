@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Pages/Navbar';
 import Footer from './Pages/Footer';
-import Banner from './Pages/Banner';
+
 import { Outlet } from 'react-router-dom';
 
 const Layout = () => {

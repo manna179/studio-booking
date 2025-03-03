@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import TimePicker from 'rsuite/TimePicker';
+
 
 // (Optional) Import component styles. If you are using Less, import the `index.less` file. 
 import 'rsuite/TimePicker/styles/index.css';
 // If you are using Less, import the `index.less` file.
 import 'rsuite/Button/styles/index.css';
-import { format } from "date-fns";
+
 import toast, { Toaster } from "react-hot-toast";
 
 
@@ -215,34 +215,36 @@ const Home = () => {
               <div>
              
                 <dialog id="my_modal_1" className="modal">
-                  <div className="modal-box " >
+                  <div className="modal-box gap-2" >
                    
                     <h3 className="font-bold text-lg"> User Name : {findById?.Name}</h3>
                     <h3 className="font-bold text-lg"> User Email : {findById?.Contact?.Email}</h3>
                     
                     <div className="modal-action">
-                      <form onSubmit={handleSubmit} method="dialog">
+                      <form className=" flex flex-wrap space-y-2 space-x-2" onSubmit={handleSubmit} method="dialog">
                      
 
-                      <input 
+                      <input className="border rounded-md"
                       onChange={handleFromTimeChange}
                       value={fromTime || ''} aria-label="from time" type="time" />
-                      <input 
+                      <input className="border rounded-md"
                       onChange={handleToTimeChange}
                       value={toTime || ''} aria-label="to time" type="time" />
                       <input
+                      className="border rounded-md"
                       onChange={handleDateChange}
                       value={dates || ''} aria-label="Date" type="date" />
                      
 
-                        <input className="border "
+                        <div className="space-x-2 ">
+                        <input className="border rounded-md"
                         name="userName"  type="button" value={findById?.Name || ''} disabled />
                         <input 
-                        name='userEmail' className="border "  type="button" value={findById?.Contact?.Email || ''} disabled /><br />
+                        name='userEmail' className="border rounded-md"  type="button" value={findById?.Contact?.Email || ''} disabled /></div>
 
 
                         {/* if there is a button in form, it will close the modal */}
-                        <button onClick={() => document.getElementById('my_modal_1').close()} className="btn">Book</button>
+                        <button onClick={() => document.getElementById('my_modal_1').close()} className="btn btn-neutral w-wide self-end">Book Now</button>
                       </form>
                     </div>
                   </div>
