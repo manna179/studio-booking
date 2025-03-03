@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
 const Layout = () => {
     return (
         <div>
-            <header>
+            <header className='border'>
                 <Navbar></Navbar>
             </header>
             <main className="min-h-[calc(100vh-306px)] w-11/12 mx-auto">

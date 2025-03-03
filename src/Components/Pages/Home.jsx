@@ -139,20 +139,23 @@ const Home = () => {
   if (error) return <p className="text-red-500">Error: {error}</p>;
 
   return (
-    <div>
+    <div className="mb-10 ">
       <h1 className="text-4xl font-bold mb-4 text-center my-8">
         Welcome to Studio Booking Page
       </h1>
 
       {/* Search Bar */}
-      <div className="mb-6 relative w-1/2 mx-auto">
+      <div className="mb-6 relative w-11/12 mx-auto">
+      <div className="flex justify-end items-center">
+      <label className="font-medium"> Search By Area : </label> 
         <input
           type="text"
           placeholder="Search by Area or City..."
           value={searchTerm}
           onChange={handleSearchChange}
-          className="border p-2 rounded w-full"
+          className="border p-2 rounded "
         />
+      </div>
 
         {/* Auto-complete Suggestions */}
         {suggestions.length > 0 && (
@@ -174,36 +177,40 @@ const Home = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredStudios.length > 0 ? (
           filteredStudios.map((info, idx) => (
-            <div key={idx} className="border p-4 rounded-lg shadow-md">
-              <h2 className="text-2xl font-semibold">{info?.Name}</h2>
+            <div  key={idx} className="border p-4 gap-2 rounded-lg shadow-md">
+             <div className="">
+             <h2 className="text-xl font-semibold">{info?.Name}</h2>
               <p>
-                <strong>Type:</strong> {info?.Type}
+                <strong>Type:</strong> <span className="text-red-500" >{info?.Type}</span> 
               </p>
               <div>
                 <p>
-                  <strong>City:</strong> {info?.Location?.City}
+                  <strong>City:</strong> <span className="text-red-500" >{info?.Location?.City}</span> 
                 </p>
                 <p>
-                  <strong>Area:</strong> {info?.Location?.Area}
+                  <strong>Area:</strong> <span className="text-red-500" >{info?.Location?.Area}</span> 
                 </p>
                 <p>
-                  <strong>Address:</strong> {info?.Location?.Address}
+                  <strong>Address:</strong> <span className="text-red-500" >{info?.Location?.Address}</span> 
                 </p>
               </div>
               <div>
-                <h2>Amenities:</h2>
+                <h2 className="font-bold">Amenities:</h2>
                 {info?.Amenities?.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li className="text-red-500" key={index}>{item}</li>
                 ))}
               </div>
               <p>
-                <strong>Price per hour:</strong> {info?.PricePerHour}{" "}
-                {info?.Currency}
+                <strong>Price per hour:</strong> <span className="text-red-500" >{info?.PricePerHour}{" "}
+                {info?.Currency}</span> 
               </p>
               <p>
-                <strong>Rating:</strong> {info?.Rating} ⭐
+                <strong>Rating:</strong> <span className="text-red-500" >{info?.Rating} ⭐</span> 
               </p>
-              <button className="btn btn-neutral" onClick={()=>handleOpenModal(info?.Id)}>Booking Now</button>
+             </div>
+              <div className="flex justify-end"> 
+              <button className="btn btn-neutral my-2" onClick={()=>handleOpenModal(info?.Id)}>Booking Now</button>
+              </div>
 
               <div>
              
