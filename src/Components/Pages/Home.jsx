@@ -48,7 +48,8 @@ const Home = () => {
     document.getElementById('my_modal_1').showModal()
   }
   const findById  = data?.Studios?.find(item => item.Id === modalId);
-  console.log("Find by id",findById);
+  console.log("Find by id",findById?.Name);
+
 
 
   // Handle search input change
@@ -113,16 +114,25 @@ const Home = () => {
     const form = e.target
     const fromTimes = fromTime;
     const toTimes = toTime; 
+
     const dateTime = dates;
+    const area = findById?.Location?.Area
+    const city = findById?.Location?.City
+    const type = findById?.Type
     const name = form.userName.value;
     const email = form.userEmail.value;
-    const totalData = {fromTimes, toTimes,email,dateTime,name}
-    localStorage.setItem('userData', JSON.stringify(totalData))
-    toast.success('success', totalData)
+    const newBooking  = {fromTimes, toTimes,email,dateTime,name,area,city,type}
+    const existingBookings = JSON.parse(localStorage.getItem("userData")) || [];
+    
+    const updatedBookings = [...existingBookings, newBooking];
+    localStorage.setItem("userData", JSON.stringify(updatedBookings));
+    localStorage.setItem('userData', JSON.stringify(updatedBookings))
+    toast.success('Booking saved successfully!')
+   
     
     form.reset()
     
-    console.log("form submitted",totalData)
+    console.log("form submitted",updatedBookings)
   }
 
   if (loading) return <span className="loading loading-bars loading-xl"></span>;
@@ -212,7 +222,7 @@ const Home = () => {
                       value={fromTime || ''} aria-label="from time" type="time" />
                       <input 
                       onChange={handleToTimeChange}
-                      value={toTime|| ''} aria-label="to time" type="time" />
+                      value={toTime || ''} aria-label="to time" type="time" />
                       <input
                       onChange={handleDateChange}
                       value={dates || ''} aria-label="Date" type="date" />
